@@ -16,7 +16,7 @@ import Contact from "./pages/Contact";
 const Container = styled.div``;
 
 function App() {
-  const { currentUser } = useSelector((state) => state.user);
+
   const { open, message, severity } = useSelector((state) => state.snackbar);
   const [openAuth, setOpenAuth] = useState(false);
   const dispatch = useDispatch();
@@ -31,7 +31,7 @@ function App() {
           <Navbar
             setOpenAuth={setOpenAuth}
             openAuth={openAuth}
-            currentUser={currentUser}
+          
           />
           <Routes>
             <Route path="/" exact element={<Home />} />
