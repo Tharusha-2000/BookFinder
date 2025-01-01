@@ -10,18 +10,18 @@ export const category = [
     off: "10-20% OFF",
   },
   {
-    img: "https://img.freepik.com/premium-photo/huge-selection-peeroni-pizza-with-tomato-sauce-sausage-dark-table_124507-61025.jpg",
-    name: "Sausage Pizza",
+    img: "https://firebasestorage.googleapis.com/v0/b/fitnaseetracking.appspot.com/o/roma.jpeg?alt=media&token=0af987c3-1e90-4399-8c24-afcb31c3f072",
+    name: "Romance",
     off: "20-40% OFF",
   },
   {
-    img: "https://firebasestorage.googleapis.com/v0/b/zionlogy-4b6e6.appspot.com/o/product%2F36107allies-mushroom-pizzafabeveryday4x3-005f809371b147378094d60f28daf212.jpg?alt=media&token=b390cc29-c79c-4306-a026-ffc468075449",
-    name: "Mushroom Pizza",
+    img: "https://firebasestorage.googleapis.com/v0/b/fitnaseetracking.appspot.com/o/fan.jpg?alt=media&token=92abe243-7b45-4e60-aa13-0871ea298b3a",
+    name: "Fantasy",
     off: "30-40% OFF",
   },
   {
-    img: "https://firebasestorage.googleapis.com/v0/b/zionlogy-4b6e6.appspot.com/o/product%2FBuffalo-Chicken-Pizza1.jpg.webp?alt=media&token=4d0afda4-8ce9-4d09-884b-e7e1cd9bf6fa",
-    name: "BBQ Chicken Pizza",
+    img: "https://firebasestorage.googleapis.com/v0/b/fitnaseetracking.appspot.com/o/hor.jpeg?alt=media&token=fb6bb362-4af8-43f2-9bf5-827f2d615e23",
+    name: "Horror",
     off: "10-40% OFF",
   },
 ];
