@@ -157,8 +157,8 @@ const NameTag = styled.span`
   }
 `;
 
-const Navbar = ({ setOpenAuth, openAuth, currentUser }) => {
-  console.log(currentUser);
+const Navbar = ({ setOpenAuth, openAuth }) => {
+  
   
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
@@ -198,13 +198,7 @@ const Navbar = ({ setOpenAuth, openAuth, currentUser }) => {
             <Navlink to="/contact" onClick={() => setIsOpen(false)}>
               Contact
             </Navlink>
-            {currentUser ? (
-              <>
-                <TextButton onClick={() => dispatch(logout())}>
-                  Logout
-                </TextButton>
-              </>
-            ) : (
+            
               <div
                 style={{
                   display: "flex",
@@ -223,33 +217,17 @@ const Navbar = ({ setOpenAuth, openAuth, currentUser }) => {
                   onClick={() => setOpenAuth(true)}
                 />
               </div>
-            )}
+            
           </MobileMenu>
         )}
 
         <ButtonContainer>
        
-          {currentUser ? (
-            <>
-             
-              <Avatar >
-                         {currentUser?.FirstName ? currentUser.FirstName.charAt(0) : ''}
-              </Avatar>
-               <NameTag >
-                 {currentUser?.FirstName ? currentUser.FirstName : ''}
-              </NameTag>
-
-                {currentUser.role === 'Admin' && (
-                  <TextButton onClick={() => navigate('/admin/dashboard')}>Admin</TextButton>
-                 )}
-
-              <TextButton onClick={handleLogout}>Logout</TextButton>
-            </>
-          ) : (
-            <>
-              <Button text="Sign In" small onClick={() => setOpenAuth(true)} />
-            </>
-          )}
+         
+          
+           <Button text="Sign In" small onClick={() => setOpenAuth(true)} />
+            
+  
         </ButtonContainer>
       </NavContainer>
     </Nav>
@@ -258,7 +236,7 @@ const Navbar = ({ setOpenAuth, openAuth, currentUser }) => {
 Navbar.propTypes = {
   setOpenAuth: PropTypes.func.isRequired,
   openAuth: PropTypes.bool.isRequired,
-  currentUser: PropTypes.object,
+  
 };
 
 
