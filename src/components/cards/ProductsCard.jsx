@@ -147,12 +147,18 @@ const ProductsCard = ({ product }) => {
   const { currentUser } = useSelector((state) => state.user);
 
   const [cartLoading, setCartLoading] = useState(false);
-   console.log(product);
-  
+  console.log(product.volumeInfo.imageLinks.thumbnail);
+
+
+
+
   return (
     <Card>
-       <Top>
-       <Image src={product?.volumeInfo.imageLinks.thumbnail} />
+       <Top> 
+
+      <Image src={product.volumeInfo.imageLinks && product.volumeInfo.imageLinks.thumbnail} />
+
+
        </Top>
       <Details onClick={() => navigate(`/bookdetails/${product.id}`)}>
         <Title>{product?.volumeInfo.title}</Title>

@@ -5,12 +5,11 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import { useState } from "react";
 import Authentication from "./pages/Auth/Authentication";
-import FoodDetails from "./pages/FoodDetails";
-import FoodListing from "./pages/FoodListing";
+import BookDetails from "./pages/BookDetails";
+import BookListing from "./pages/BookListing";
 import { useDispatch, useSelector } from "react-redux";
 import { Snackbar } from "@mui/material";
 import { closeSnackbar } from "./redux/reducers/SnackbarSlice";
-import ForgetPassword from "./pages/Auth/ForgetPassword";
 import Contact from "./pages/Contact";
 
 
@@ -36,9 +35,8 @@ function App() {
           />
           <Routes>
             <Route path="/" exact element={<Home />} />
-            <Route path="/bookdetails/:id" exact element={<FoodDetails />} />
-            <Route path="/bookdetails" exact element={<FoodListing />} />
-            <Route path="/forgetPassword" exact element={<ForgetPassword />} />
+            <Route path="/bookdetails/:id" exact element={<BookDetails />} />
+            <Route path="/bookdetails" exact element={<BookListing />} />
             <Route path="/contact" exact element={<Contact />} />
             
           

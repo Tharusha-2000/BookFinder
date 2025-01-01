@@ -12,7 +12,7 @@ import {
 import Button from "./Button";
 import { Avatar } from "@mui/material";
 import { useDispatch } from "react-redux";
-import { logout } from "../redux/reducers/UserSlice";
+
 import { useNavigate } from 'react-router-dom';
 
 const Nav = styled.div`
@@ -179,12 +179,6 @@ const Navbar = ({ setOpenAuth, openAuth, currentUser }) => {
           <Logo src={LogoImg} />
         </NavLogo>
 
-        <MobileIcons>
-          <Navlink to="/search">
-            <SearchRounded sx={{ color: "inherit", fontSize: "30px" }} />
-          </Navlink>
-          
-        </MobileIcons>
 
         <NavItems>
           <Navlink to="/">Home</Navlink>
@@ -234,9 +228,7 @@ const Navbar = ({ setOpenAuth, openAuth, currentUser }) => {
         )}
 
         <ButtonContainer>
-          <Navlink to="/search">
-            <SearchRounded sx={{ color: "inherit", fontSize: "30px" }} />
-          </Navlink>
+       
           {currentUser ? (
             <>
              

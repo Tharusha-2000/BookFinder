@@ -10,7 +10,6 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import userReducer from "./reducers/UserSlice";
 import snackbarReducer from "./reducers/SnackbarSlice";
 
 const persistConfig = {
@@ -20,7 +19,6 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
-  user: userReducer,
   snackbar: snackbarReducer,
  
 });

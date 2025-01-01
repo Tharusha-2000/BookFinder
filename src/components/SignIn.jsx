@@ -4,9 +4,8 @@ import TextInput from "./TextInput";
 import Button from "./Button";
 import { useDispatch } from "react-redux";
 import { UserSignIn } from "../api";
-import { loginSuccess } from "../redux/reducers/UserSlice";
+
 import { openSnackbar } from "../redux/reducers/SnackbarSlice";
-import LogoImage from "../utils/Images/Logo.png";
 import {jwtDecode} from "jwt-decode";
 import { useNavigate } from "react-router-dom"; 
 
@@ -72,65 +71,12 @@ const SignIn = ({ setOpenAuth }) => {
     return true;
   };
 
-  const handelSignIn = async () => {
-    setLoading(true);
-    setButtonDisabled(true);
-    if (validateInputs()) {
-      await UserSignIn({ username, password })
-         
-        .then((res) => {
-          const token = res.data.jwtToken;
-          const decodedToken = jwtDecode(token);
-          console.log(decodedToken);
-          const userRole = decodedToken["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
-          console.log(userRole);
-           dispatch(loginSuccess(res.data));
-          if (userRole === "Admin") {
-            navigate("/admin/dashboard"); 
-            setOpenAuth(false);
-             console.log("Admin");
-
-          } else {
-            console.log("Regular User");
-            navigate("/"); // Navigate to homepage for regular users
-            setOpenAuth(false);
-          }
-          
-          dispatch(
-            openSnackbar({
-              message: "Login Successful",
-              severity: "success",
-            })
-
-          );
-          setLoading(false);
-          setButtonDisabled(false);
-          setOpenAuth(false);
-        })
-        .catch((err) => {
-          setLoading(false);
-          setButtonDisabled(false);
-          console.log(err.response);
-          dispatch(
-            openSnackbar({
-              message:  err.response.data,
-              severity: "error",
-            })
-          );
-        });
-    }
-  };
-
-  const handleForgotPasswordClick = () => {
-    setOpenAuth(false);
-    navigate('/forgetPassword');
-  };
-
+  
 
   return (
     <Container>
       <div>
-        <Logo src={LogoImage} />
+       
         <Span>Please login with your details here</Span>
       </div>
       <div style={{ display: "flex", gap: "20px", flexDirection: "column" }}>
@@ -150,10 +96,9 @@ const SignIn = ({ setOpenAuth }) => {
           handelChange={(e) => setPassword(e.target.value)}
         />
 
-        <TextButton onClick={handleForgotPasswordClick}>Forgot Password?</TextButton>
+        <TextButton>Forgot Password?</TextButton>
         <Button
           text="Sign In"
-          onClick={handelSignIn}
           isLoading={loading}
           isDisabled={buttonDisabled}
         />

@@ -149,8 +149,8 @@ const Div = styled.div`
   gap: 24px;
 `;
 
-const FoodDetails = () => {
-  const { id } = useParams();
+const BookDetails = () => {
+  
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [favorite, setFavorite] = useState(false);
@@ -162,13 +162,18 @@ const FoodDetails = () => {
   const [selectedQty, setSelectedQty] = useState(1);
   const [averageRating, setAverageRating] = useState(null);
   const { currentUser } = useSelector((state) => state.user);
-
+  
+  const { id } = useParams(); 
+  console.log(id);
   const getProduct = async () => {
-    const API_URL = "https://www.googleapis.com/books/v1/volumes/zyTCAlFPjgYC?key=AIzaSyBEPZO2B-SyohGnSxq5aUk38NKaBFnci1g"
+    const API_URL =`https://www.googleapis.com/books/v1/volumes/${id}?key=AIzaSyBEPZO2B-SyohGnSxq5aUk38NKaBFnci1g`;
     setLoading(true);
     await axios.get(API_URL).then((res) => {
-      console.log(res.data.items);
-      setProducts(res.data.items);
+      console.log(res.data);
+      setProduct(res.data);
+      setLoading(false);
+    }).catch((error) => {
+      console.log("Error fetching product data:", error);
       setLoading(false);
     });
   };
@@ -211,24 +216,30 @@ const FoodDetails = () => {
               </Items>
             </Categories>
              
-            
-
-            <Div>
-              Pages
+            <Categories>
+               Category:
               <Items>
-                {product?.volumeInfo.sizes.map((size, index) => (
-                  <Button
-                    key={index}
-                    outlined={selectedSize !== size.size}
-                    small
-                    text={size.size.toUpperCase()}
-                  />
+                {product?.volumeInfo.categories.map((author, index) => (
+                  <Item key={index}>{author}</Item>
                 ))}
               </Items>
-            </Div>
+            </Categories>
 
             <Div>
-              Select Quntity
+             
+              
+              <Items>
+              Price :{product?.saleInfo.saleability}
+              </Items>
+              <Items>
+              Pages :  {product?.volumeInfo.pageCount}
+              </Items>
+            <Items>
+              Publisher : {product?.volumeInfo.publisher} 
+              </Items>
+              <Items>  
+              Date: {product?.volumeInfo.publishedDate}
+              </Items>
             </Div>
       
             <ButtonWrapper>
@@ -244,4 +255,4 @@ const FoodDetails = () => {
   );
 };
 
-export default FoodDetails;
+export default BookDetails;

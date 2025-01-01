@@ -4,7 +4,6 @@ import TextInput from "./TextInput";
 import Button from "./Button";
 import { UserSignUp , UserCreate , UserSignIn } from "../api";
 import { useDispatch } from "react-redux";
-import { loginSuccess } from "../redux/reducers/UserSlice";
 import { openSnackbar } from "../redux/reducers/SnackbarSlice";
 
 
@@ -95,77 +94,6 @@ const SignUp = ({ setOpenAuth }) => {
 
 
 
-
-  const handleSignUp = async () => {
-
-    if (!validateInputs()) {
-      setLoading(false); 
-      setButtonDisabled(false); 
-      return;
-    }
-
-    setLoading(true);
-    setButtonDisabled(true);
-
-    if (validateInputs()) {
-      const username = email; 
-      const roles = ["customer"]; 
-      const userType = "customer"; 
-      const userData = {
-        firstName,
-        lastName,
-        email,
-        userType,
-      };
-
-      try {
-        const createResponse = await UserCreate(userData);
-        
-        if (createResponse.status === 200) {
-          const signUpResponse = await UserSignUp({ username, password, roles });
-          console.log(' createuser', signUpResponse);
-
-          if (signUpResponse.status === 200) {
-            console.log('UserSignUp response:', signUpResponse);
-            const signInResponse = await UserSignIn({ username, password });
-            console.log('UserSignIn response:', signInResponse);
-            dispatch(loginSuccess(signInResponse.data));
-            dispatch(
-              openSnackbar({
-                message: "Sign Up Successful",
-                severity: "success",
-              })
-            );
-            setLoading(false);
-            setButtonDisabled(false);
-            setOpenAuth(false);
-          }
-        }
-
-      } catch (err) {
-        console.log('Error in handleSignUp:', err);
-        setButtonDisabled(false);
-        if (err.response) {
-          setLoading(false);
-          setButtonDisabled(false);
-          dispatch(
-            openSnackbar({
-              message: err.response.data.message,
-              severity: "error",
-            })
-          );
-        } else {
-          dispatch(
-            openSnackbar({
-              message: err.message,
-              severity: "error",
-            })
-          );
-        }
-      }
-    }
-  };
-
   return (
     <Container>
       <div>
@@ -200,7 +128,6 @@ const SignUp = ({ setOpenAuth }) => {
         />
         <Button
           text="Sign Up"
-          onClick={handleSignUp}
           isLoading={loading}
           isDisabled={buttonDisabled}
         />
