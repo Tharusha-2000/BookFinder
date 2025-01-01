@@ -10,13 +10,7 @@ import {
   Remove,
 } from "@mui/icons-material";
 import { useNavigate, useParams } from "react-router-dom";
-import {
-  addToCart,
-  deleteFromCart,
-  getProductDetails,
-  updateItemOnCart,
-  getProductFeedbacks,
-} from "../api";
+
 import { openSnackbar } from "../redux/reducers/SnackbarSlice";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
