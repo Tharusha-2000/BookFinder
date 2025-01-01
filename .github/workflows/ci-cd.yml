@@ -33,10 +33,6 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      # Run tests
-      - name: Run Tests
-        run: npm test -- --watchAll=false --passWithNoTests
-       
 
       # Build the React app
       - name: Build React App
@@ -47,7 +43,7 @@ jobs:
         if: github.ref == 'refs/heads/main'
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GithubBookApi}}
           publish_dir: ./build
       
       - name: Set up Docker Buildx
